@@ -16,4 +16,15 @@ describe('Airport ', function () {
     expect(airport.planes).toContain(plane1)
     expect(airport.planes).not.toContain(plane2)
   });
+
+  it('does not land a plane when full', function() {
+    let airport = new Airport()
+    let plane = jasmine.createSpy("plane")
+    for(i=1; i<=20; i++) {
+      airport.land(plane)
+    }
+    expect(function() {
+      airport.land(plane);
+    }).toThrowError("Airport is full");
   });
+});
